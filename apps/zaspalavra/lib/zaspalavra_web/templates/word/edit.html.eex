@@ -1,0 +1,5 @@
+<h2>Edit Word</h2>
+
+<%= render "form.html", Map.put(assigns, :action, word_path(@conn, :update, @word)) %>
+
+<span><%= link "Back", to: word_path(@conn, :index) %></span>

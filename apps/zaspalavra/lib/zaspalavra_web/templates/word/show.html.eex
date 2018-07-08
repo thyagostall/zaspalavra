@@ -1,0 +1,23 @@
+<h2>Show Word</h2>
+
+<ul>
+
+  <li>
+    <strong>Prefix:</strong>
+    <%= @word.prefix %>
+  </li>
+
+  <li>
+    <strong>Word:</strong>
+    <%= @word.word %>
+  </li>
+
+  <li>
+    <strong>Votes:</strong>
+    <%= @word.votes %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: word_path(@conn, :edit, @word) %></span>
+<span><%= link "Back", to: word_path(@conn, :index) %></span>
