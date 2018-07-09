@@ -8,6 +8,8 @@ defmodule Zaspalavra.Words.Word do
     field :votes, :integer
     field :word, :string
 
+    field :display_word, :string, virtual: true
+
     timestamps()
   end
 
@@ -16,5 +18,9 @@ defmodule Zaspalavra.Words.Word do
     word
     |> cast(attrs, [:prefix, :word, :votes])
     |> validate_required([:prefix, :word, :votes])
+  end
+
+  def fill_in_dynamic_fields(word) do
+    %__MODULE__{word | display_word: word.prefix <> word.word}
   end
 end

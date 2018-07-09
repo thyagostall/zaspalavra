@@ -16,6 +16,7 @@ defmodule ZaspalavraWeb.Router do
   scope "/", ZaspalavraWeb do
     pipe_through :browser # Use the default browser stack
 
+    get "/poll/:id", PageController, :show
     get "/", PageController, :index
     resources "/words", WordController
   end
