@@ -13,4 +13,20 @@ defmodule ZaspalavraWeb.PageController do
     conn
     |> redirect(to: page_path(conn, :show, random_id))
   end
+
+  def approve(conn, %{"id" => word_id}) do
+    :ok = Words.approve(word_id)
+
+    conn
+    |> put_flash(:info, "Voto recebido")
+    |> redirect to: "/"
+  end
+
+  def reject(conn, %{"id" => word_id}) do
+    :ok = Words.reject(word_id)
+
+    conn
+    |> put_flash(:info, "Voto recebido")
+    |> redirect to: "/"
+  end
 end

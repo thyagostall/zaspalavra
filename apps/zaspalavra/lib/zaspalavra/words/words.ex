@@ -21,6 +21,18 @@ defmodule Zaspalavra.Words do
     |> Kernel.trunc()
   end
 
+  def approve(id) do
+    sql = ~s[UPDATE words SET votes = votes + 1 WHERE id = ?]
+    {result, _} = SQL.query(Repo, sql, [id])
+    result
+  end
+
+  def reject(id) do
+    sql = ~s[UPDATE words SET votes = votes - 1 WHERE id = ?]
+    {result, _} = SQL.query(Repo, sql, [id])
+    result
+  end
+
   def create_word(attrs \\ %{}) do
     %Word{}
     |> Word.changeset(attrs)

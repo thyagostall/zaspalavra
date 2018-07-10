@@ -1,6 +1,10 @@
 <h1 class="word"><%= @word.display_word %></h1>
 
 <div class="col-lg-6">
-  <button class="btn btn-lg btn-danger">✘ Reprovada</button>
-  <button class="btn btn-lg btn-success">✔ Aprovada</button>
+  <%= form_for @conn, page_path(@conn, :reject, @word.id), fn f -> %>
+    <%= submit "✘ Reprovada", [class: "btn btn-lg btn-danger"] %>
+  <% end %>
+  <%= form_for @conn, page_path(@conn, :approve, @word.id), fn f -> %>
+    <%= submit "✔ Aprovada", [class: "btn btn-lg btn-success"] %>
+  <% end %>
 </div>

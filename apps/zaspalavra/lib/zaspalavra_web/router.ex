@@ -18,6 +18,10 @@ defmodule ZaspalavraWeb.Router do
 
     get "/poll/:id", PageController, :show
     get "/", PageController, :index
+
+    post "/approve/:id", PageController, :approve
+    post "/reject/:id", PageController, :reject
+
     resources "/words", WordController
   end
 
