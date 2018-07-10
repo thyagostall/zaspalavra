@@ -8,4 +8,6 @@
   <%= button("✘ Reprovada", to: page_path(@conn, :reject, @word.id), method: :post, class: "btn btn-lg btn-danger") %>
 </div>
 
-<p>Ver definição de <%= link(@word.display_word, to: @definition_url) %></p>
+<div class="col-xs-12 definition-link">
+  <p>Ver definição de <%= link(@word.display_word, to: @definition_url, target: "_blank") %></p>
+</div>
