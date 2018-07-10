@@ -1,17 +1,11 @@
 <h1 class="word"><%= @word.display_word %></h1>
 
 <div class="col-xs-6">
-  <%= form_for @conn, page_path(@conn, :approve, @word.id), fn f -> %>
-    <%= submit "✔ Aprovada", [class: "btn btn-lg btn-success"] %>
-  <% end %>
+  <%= button("✔ Aprovada", to: page_path(@conn, :approve, @word.id), method: :post, class: "btn btn-lg btn-success") %>
 </div>
 
 <div class="col-xs-6">
-  <%= form_for @conn, page_path(@conn, :reject, @word.id), fn f -> %>
-    <%= submit "✘ Reprovada", [class: "btn btn-lg btn-danger"] %>
-  <% end %>
+  <%= button("✘ Reprovada", to: page_path(@conn, :reject, @word.id), method: :post, class: "btn btn-lg btn-danger") %>
 </div>
 
-<div class="col-xs-12 well">
-  Definition goes here
-</div>
+<p>Ver definição de <%= link(@word.display_word, to: @definition_url) %></p>

@@ -5,7 +5,8 @@ defmodule ZaspalavraWeb.PageController do
 
   def show(conn, %{"id" => id}) do
     word = Words.get_word!(id)
-    render conn, "index.html", word: word
+    definition_url = "https://pt.wiktionary.org/wiki/#{word.word}"
+    render conn, "index.html", word: word, definition_url: definition_url
   end
 
   def index(conn, _params) do
