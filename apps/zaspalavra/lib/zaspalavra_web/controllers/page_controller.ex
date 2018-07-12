@@ -2,11 +2,11 @@ defmodule ZaspalavraWeb.PageController do
   use ZaspalavraWeb, :controller
 
   alias Zaspalavra.Words
+  alias Zaspalavra.Dictionary
 
   def show(conn, %{"id" => id}) do
     word = Words.get_word!(id)
-    definition_url = "https://pt.wiktionary.org/wiki/#{word.word}"
-    render conn, "index.html", word: word, definition_url: definition_url
+    show_word(conn, word)
   end
 
   def index(conn, _params) do
@@ -29,5 +29,16 @@ defmodule ZaspalavraWeb.PageController do
     conn
     |> put_flash(:info, "Voto recebido")
     |> redirect to: "/"
+  end
+
+  defp show_word(conn, {:not_found}) do
+    conn
+    |> put_status(:not_found)
+    |> render(ZaspalavraWeb.ErrorView, "404.html")
+  end
+
+  defp show_word(conn, {:ok, word}) do
+    definition_url = Dictionary.definition_url(word.word)
+    render conn, "index.html", word: word, definition_url: definition_url
   end
 end

@@ -10,9 +10,12 @@ defmodule Zaspalavra.Words do
   end
 
   def get_word!(id) do
-    Repo.get!(Word, id)
-    |> Word.fill_in_dynamic_fields()
+    Repo.get(Word, id)
+    |> prepare_result()
   end
+
+  defp prepare_result(nil), do: {:not_found}
+  defp prepare_result(word), do: {:ok, Word.fill_in_dynamic_fields(word)}
 
   def get_random_id() do
     sql = ~s[SELECT MIN(id) + FLOOR(RAND() * MAX(id)) random_id FROM words]
