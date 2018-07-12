@@ -18,7 +18,7 @@ defmodule Zaspalavra.Words do
   defp prepare_result(word), do: {:ok, Word.fill_in_dynamic_fields(word)}
 
   def get_random_id() do
-    sql = ~s[SELECT MIN(id) + FLOOR(RAND() * MAX(id)) random_id FROM words]
+    sql = ~s[SELECT id FROM words ORDER BY RAND() LIMIT 1]
     %{rows: [[random_id]]} = SQL.query!(Repo, sql, [])
     random_id
     |> Kernel.trunc()
