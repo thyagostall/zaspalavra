@@ -11,3 +11,7 @@
 <div class="col-xs-12 definition-link">
   <p>Ver definição de <%= link(@word.display_word, to: @definition_url, target: "_blank") %></p>
 </div>
+
+<div class="col-xs-12 definition-link">
+  <p><%= link("Ranking", to: ranking_path(@conn, :index), target: "_blank") %></p>
+</div>

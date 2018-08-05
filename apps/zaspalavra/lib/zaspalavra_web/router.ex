@@ -23,6 +23,8 @@ defmodule ZaspalavraWeb.Router do
     post "/reject/:id", PageController, :reject
 
     resources "/words", WordController
+
+    get "/ranking", RankingController, :index
   end
 
   # Other scopes may use custom stacks.
